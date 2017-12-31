@@ -7,7 +7,7 @@
 
 import xbmc, xbmcgui, xbmcaddon, xbmcvfs
 import os, sys
-from lib.dropbox import DropboxOAuth2FlowNoRedirect
+from lib.dropbox.oauth import DropboxOAuth2FlowNoRedirect
 
 # PIL needed for QR code generation (source code from qr-code.py from service.linuxwhatelse.notify)
 '''
@@ -93,6 +93,9 @@ authorize_url = flow.start()
 mydisplay = MyClass(authorize_url)
 mydisplay.doModal()
 del mydisplay
+
+# open link in browser
+utils.openURL(authorize_url)
 
 # Open dialog to input the confirmation code.
 dialog = xbmcgui.Dialog()

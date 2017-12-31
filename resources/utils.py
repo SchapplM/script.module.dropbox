@@ -1,9 +1,12 @@
 """
 This file contains additional utility functions
 """
-import xbmc, xbmcgui, xbmcvfs, xbmcaddon
+
 import os
 import sys
+
+import xbmc, xbmcgui, xbmcvfs, xbmcaddon
+from webviewer import webviewer
 
 __addon_id__= u'script.module.dropbox'
 __Addon = xbmcaddon.Addon(__addon_id__)
@@ -56,3 +59,24 @@ def getString(string_id):
     # return a localized string from resources/language/*.po
     # The returned string is unicode
     return __Addon.getLocalizedString(string_id)
+
+def openURL(url):
+    url, html = webviewer.getWebResult(url,autoForms=[],autoClose=None,dialog=True)
+    #     osWin = xbmc.getCondVisibility('system.platform.windows')
+    #     osOsx = xbmc.getCondVisibility('system.platform.osx')
+    #     osLinux = xbmc.getCondVisibility('system.platform.linux')
+    #     osAndroid = xbmc.getCondVisibility('System.Platform.Android')
+    #     url = 'http://www.google.fr/'
+    #     
+    #     if osOsx:    
+    #         # ___ Open the url with the default web browser
+    #         xbmc.executebuiltin("System.Exec(open "+url+")")
+    #     elif osWin:
+    #         # ___ Open the url with the default web browser
+    #         xbmc.executebuiltin("System.Exec(cmd.exe /c start "+url+")")
+    #     elif osLinux and not osAndroid:
+    #         # ___ Need the xdk-utils package
+    #         xbmc.executebuiltin("System.Exec(xdg-open "+url+")") 
+    #     elif osAndroid:
+    #         # ___ Open media with standard android web browser
+    #         xbmc.executebuiltin("StartAndroidActivity(com.android.browser,android.intent.action.VIEW,,"+url+")")
